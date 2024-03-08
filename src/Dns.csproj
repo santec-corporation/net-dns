@@ -9,8 +9,8 @@
 		<DebugType>portable</DebugType>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 
-		<AssemblyVersion>3.0.1</AssemblyVersion>
-		<Version>3.0.1</Version>
+		<AssemblyVersion>4.0.1</AssemblyVersion>
+		<Version>4.0.1</Version>
 
 		<!-- Nuget specs -->
 		<PackageId>Makaretu.Dns.New</PackageId>
