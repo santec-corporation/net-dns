@@ -9,10 +9,10 @@
 		<DebugType>portable</DebugType>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 
-		<AssemblyVersion>4.0.1</AssemblyVersion>
-		<Version>4.0.1</Version>
+		<AssemblyVersion>4.0.3</AssemblyVersion>
+		<Version>4.0.3</Version>
 
-		<!-- Nuget specs -->
+		<!-- Nuget specs  -->
 		<PackageId>Makaretu.Dns.New</PackageId>
 		<Authors>Richard Schneider</Authors>
 		<Title>DNS Object Model</Title>
@@ -26,6 +26,8 @@
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+		<GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
 	</PropertyGroup>
 
 	<PropertyGroup>
