@@ -1,17 +1,15 @@
-﻿namespace Makaretu.Dns
+﻿namespace Makaretu.Dns;
+
+/// <summary>
+///     Contains the IPv6 address of the named resource.
+/// </summary>
+public class AAAARecord : AddressRecord
 {
     /// <summary>
-    ///   Contains the IPv6 address of the named resource.
+    ///     Creates a new instance of the <see cref="AAAARecord" /> class.
     /// </summary>
-    public class AAAARecord : AddressRecord
+    public AAAARecord()
     {
-        /// <summary>
-        ///   Creates a new instance of the <see cref="AAAARecord"/> class.
-        /// </summary>
-        public AAAARecord() : base()
-        {
-            Type = DnsType.AAAA;
-        }
-
+        Type = DnsType.AAAA;
     }
 }

@@ -1,33 +1,32 @@
-﻿namespace Makaretu.Dns
+﻿namespace Makaretu.Dns;
+
+/// <summary>
+///     Identifies a key exchange algorithm.
+/// </summary>
+public enum KeyExchangeMode : ushort
 {
     /// <summary>
-    ///   Identifies a key exchange algorithm.
+    ///     Server assignment.
     /// </summary>
-    public enum KeyExchangeMode : ushort
-    {
-        /// <summary>
-        ///   Server assignment.
-        /// </summary>
-        ServerAssignment = 1,
+    ServerAssignment = 1,
 
-        /// <summary>
-        ///  Diffie-Hellman exchange (DH).
-        /// </summary>
-        DiffieHellman = 2,
+    /// <summary>
+    ///     Diffie-Hellman exchange (DH).
+    /// </summary>
+    DiffieHellman = 2,
 
-        /// <summary>
-        ///  GSS-API negotiation.
-        /// </summary>
-        GssApi = 3,
+    /// <summary>
+    ///     GSS-API negotiation.
+    /// </summary>
+    GssApi = 3,
 
-        /// <summary>
-        ///   Resolver assignment.
-        /// </summary>
-        ResolverAssignment = 4,
+    /// <summary>
+    ///     Resolver assignment.
+    /// </summary>
+    ResolverAssignment = 4,
 
-        /// <summary>
-        ///   Key deletion.
-        /// </summary>
-        KeyDeletion = 5,
-    }
+    /// <summary>
+    ///     Key deletion.
+    /// </summary>
+    KeyDeletion = 5
 }

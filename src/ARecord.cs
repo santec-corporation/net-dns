@@ -1,17 +1,15 @@
-﻿namespace Makaretu.Dns
+﻿namespace Makaretu.Dns;
+
+/// <summary>
+///     Contains the IPv4 address of the named resource.
+/// </summary>
+public class ARecord : AddressRecord
 {
     /// <summary>
-    ///   Contains the IPv4 address of the named resource.
+    ///     Creates a new instance of the <see cref="ARecord" /> class.
     /// </summary>
-    public class ARecord : AddressRecord
+    public ARecord()
     {
-        /// <summary>
-        ///   Creates a new instance of the <see cref="ARecord"/> class.
-        /// </summary>
-        public ARecord() : base()
-        {
-            Type = DnsType.A;
-        }
-
+        Type = DnsType.A;
     }
 }
