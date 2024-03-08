@@ -19,7 +19,7 @@ namespace Makaretu.Dns
                 Flags = NSEC3Flags.OptOut,
                 Iterations = 12,
                 Salt = new byte[] { 0xaa, 0xbb, 0xcc, 0xdd },
-                NextHashedOwnerName = Base32.ExtendedHex.Decode("2vptu5timamqttgl4luu9kg21e0aor3s"),
+                NextHashedOwnerName = Base32.ExtendedHex.Decode("2vptu5timamqttgl4luu9kg21e0aor3s".AsSpan()).ToArray(),
                 Types = { DnsType.A, DnsType.RRSIG }
             };
             var b = (NSEC3Record)new ResourceRecord().Read(a.ToByteArray());
@@ -46,7 +46,7 @@ namespace Makaretu.Dns
                 Flags = NSEC3Flags.OptOut,
                 Iterations = 12,
                 Salt = new byte[] { 0xaa, 0xbb, 0xcc, 0xdd },
-                NextHashedOwnerName = Base32.ExtendedHex.Decode("2vptu5timamqttgl4luu9kg21e0aor3s"),
+                NextHashedOwnerName = Base32.ExtendedHex.Decode("2vptu5timamqttgl4luu9kg21e0aor3s".AsSpan()).ToArray(),
                 Types = { DnsType.A, DnsType.RRSIG }
             };
             var b = (NSEC3Record)new ResourceRecord().Read(a.ToString());
