@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
+		<TargetFrameworks>net8.0</TargetFrameworks>
 		<LangVersion>Latest</LangVersion>
 		<Nullable>Enable</Nullable>
 		<AssemblyName>Makaretu.Dns</AssemblyName>
@@ -9,8 +9,8 @@
 		<DebugType>portable</DebugType>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 
-		<AssemblyVersion>4.0.3</AssemblyVersion>
-		<Version>4.0.3</Version>
+		<AssemblyVersion>4.0.4</AssemblyVersion>
+		<Version>4.0.4</Version>
 
 		<!-- Nuget specs  -->
 		<PackageId>Makaretu.Dns.New</PackageId>
