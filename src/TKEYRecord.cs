@@ -10,7 +10,7 @@ namespace Makaretu.Dns;
 /// </remarks>
 public class TKEYRecord : ResourceRecord
 {
-    private static readonly byte[]? NoData = [];
+    private static readonly byte[] NoData = [];
 
     /// <summary>
     ///     Creates a new instance of the <see cref="TKEYRecord" /> class.
@@ -72,7 +72,7 @@ public class TKEYRecord : ResourceRecord
     /// <value>
     ///     The format depends on the <see cref="Mode" />.
     /// </value>
-    public byte[]? Key { get; set; }
+    public byte[] Key { get; set; }
 
     /// <summary>
     ///     Other data.

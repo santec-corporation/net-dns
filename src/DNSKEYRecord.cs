@@ -48,9 +48,9 @@ public class DNSKEYRecord : ResourceRecord
 
         using var ms = new MemoryStream();
         var p = key.ExportParameters(false);
-        ms.WriteByte((byte)p.Exponent.Length);
+        ms.WriteByte((byte)p.Exponent!.Length);
         ms.Write(p.Exponent, 0, p.Exponent.Length);
-        ms.Write(p.Modulus, 0, p.Modulus.Length);
+        ms.Write(p.Modulus!, 0, p.Modulus!.Length);
         PublicKey = ms.ToArray();
     }
 
@@ -92,8 +92,8 @@ public class DNSKEYRecord : ResourceRecord
         // In DNSSEC keys, Q is a simple bit string that represents the
         // uncompressed form of a curve point, "x | y".
         using var ms = new MemoryStream();
-        ms.Write(p.Q.X, 0, p.Q.X.Length);
-        ms.Write(p.Q.Y, 0, p.Q.Y.Length);
+        ms.Write(p.Q.X!, 0, p.Q.X!.Length);
+        ms.Write(p.Q.Y!, 0, p.Q.Y!.Length);
         PublicKey = ms.ToArray();
     }
 #endif
@@ -129,7 +129,7 @@ public class DNSKEYRecord : ResourceRecord
     /// <value>
     ///     The format depends on the key <see cref="Algorithm" />.
     /// </value>
-    public byte[]? PublicKey { get; set; }
+    public byte[] PublicKey { get; set; }
 
     /// <summary>
     ///     Calculates the key tag.

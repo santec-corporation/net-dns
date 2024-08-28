@@ -104,8 +104,8 @@ public class PresentationReader(TextReader text)
     private DomainName? MakeAbsoluteDomainName(string name)
     {
         // If an absolute name.
-        if (name.EndsWith("."))
-            return new DomainName(name.Substring(0, name.Length - 1));
+        if (name.EndsWith('.'))
+            return new DomainName(name[..^1]);
 
         // Then its a relative name.
         return DomainName.Join(new DomainName(name), Origin!);
@@ -132,7 +132,7 @@ public class PresentationReader(TextReader text)
     ///     This must be the last field in the RDATA because the string
     ///     can contain embedded spaces.
     /// </remarks>
-    public byte[]? ReadBase64String()
+    public byte[] ReadBase64String()
     {
         // Handle embedded space and CRLFs inside of parens.
         var sb = new StringBuilder();
@@ -171,7 +171,7 @@ public class PresentationReader(TextReader text)
     /// <returns>
     ///     An <see cref="IPAddress" />.
     /// </returns>
-    public IPAddress? ReadIPAddress(int length = 4)
+    public IPAddress ReadIPAddress(int length = 4)
     {
         return IPAddress.Parse(ReadToken());
     }
@@ -186,7 +186,7 @@ public class PresentationReader(TextReader text)
     public DnsType ReadDnsType()
     {
         var token = ReadToken();
-        if (token.StartsWith("TYPE")) return (DnsType)ushort.Parse(token.Substring(4), CultureInfo.InvariantCulture);
+        if (token.StartsWith("TYPE")) return (DnsType)ushort.Parse(token[4..], CultureInfo.InvariantCulture);
         return (DnsType)Enum.Parse(typeof(DnsType), token);
     }
 
@@ -324,11 +324,11 @@ public class PresentationReader(TextReader text)
             // Is TYPE?
             if (token.StartsWith("TYPE"))
             {
-                type = (DnsType)ushort.Parse(token.Substring(4), CultureInfo.InvariantCulture);
+                type = (DnsType)ushort.Parse(token[4..], CultureInfo.InvariantCulture);
                 continue;
             }
 
-            if (token.ToLowerInvariant() != "any" && Enum.TryParse(token, out DnsType t))
+            if (!token.Equals("any", StringComparison.OrdinalIgnoreCase) && Enum.TryParse(token, out DnsType t))
             {
                 type = t;
                 continue;
@@ -337,7 +337,7 @@ public class PresentationReader(TextReader text)
             // Is CLASS?
             if (token.StartsWith("CLASS"))
             {
-                klass = (DnsClass)ushort.Parse(token.Substring(5), CultureInfo.InvariantCulture);
+                klass = (DnsClass)ushort.Parse(token[5..], CultureInfo.InvariantCulture);
                 continue;
             }
 

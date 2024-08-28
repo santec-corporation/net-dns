@@ -16,7 +16,7 @@ namespace Makaretu.Dns.Resolving;
 ///     taken on 18 July 2018.
 /// </remarks>
 [DebuggerDisplay("Count = {Count}")]
-public sealed class ConcurrentSet<T> : ICollection<T>
+public sealed class ConcurrentSet<T> : ICollection<T> where T : notnull
 {
     /// <summary>
     ///     The default concurrency level is 2. That means the collection can cope with up to two
@@ -141,9 +141,8 @@ public sealed class ConcurrentSet<T> : ICollection<T>
     /// </summary>
     public void AddRange(IEnumerable<T> values)
     {
-        if (values != null)
-            foreach (var v in values)
-                Add(v);
+        foreach (var v in values)
+            Add(v);
     }
 
     /// <summary>
@@ -169,7 +168,7 @@ public sealed class ConcurrentSet<T> : ICollection<T>
     /// <summary>
     ///     enumerator for the keys.
     /// </summary>
-    public struct KeyEnumerator
+    public readonly struct KeyEnumerator
     {
         private readonly IEnumerator<KeyValuePair<T, byte>> _kvpEnumerator;
 

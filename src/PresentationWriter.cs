@@ -99,8 +99,8 @@ public class PresentationWriter(TextWriter text)
     {
         var needQuote = value == string.Empty;
 
-        value = value.Replace("\\", "\\\\").Replace("\"", "\\\"");
-        if (value.Contains(" "))
+        value = value.Replace("\\", @"\\").Replace("\"", "\\\"");
+        if (value.Contains(' '))
             needQuote = true;
 
         if (needQuote)
@@ -168,7 +168,7 @@ public class PresentationWriter(TextWriter text)
     /// <param name="appendSpace">
     ///     Write a space after the value.
     /// </param>
-    public void WriteBase64String(byte[]? value, bool appendSpace = true)
+    public void WriteBase64String(byte[] value, bool appendSpace = true)
     {
         WriteString(Convert.ToBase64String(value), appendSpace);
     }

@@ -15,7 +15,7 @@ public class UnknownEdnsOption : EdnsOption
     /// <summary>
     ///     Specfic data for the option.
     /// </summary>
-    public byte[]? Data { get; set; }
+    public byte[] Data { get; set; }
 
     /// <inheritdoc />
     public override void ReadData(WireReader reader, int length)

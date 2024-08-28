@@ -131,7 +131,7 @@ public class Catalog : ConcurrentDictionary<DomainName, Node>
         var assembly = typeof(Catalog).GetTypeInfo().Assembly;
         using (var hints = assembly.GetManifestResourceStream("Makaretu.Dns.Resolving.RootHints"))
         {
-            var reader = new PresentationReader(new StreamReader(hints));
+            var reader = new PresentationReader(new StreamReader(hints!));
             ResourceRecord? r;
             while (null != (r = reader.ReadResourceRecord())) Add(r);
         }

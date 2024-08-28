@@ -45,7 +45,7 @@ public class TSIGRecord : ResourceRecord
     /// </summary>
     public const string HMACSHA512 = "hmac-sha512";
 
-    private static readonly byte[]? NoData = [];
+    private static readonly byte[] NoData = [];
 
     /// <summary>
     ///     Creates a new instance of the <see cref="TSIGRecord" /> class.
@@ -89,7 +89,7 @@ public class TSIGRecord : ResourceRecord
     ///     See <see href="https://tools.ietf.org/html/rfc2845#section-3">Protocol Operation</see>
     ///     for details on generating the MAC.
     /// </remarks>
-    public byte[]? MAC { get; set; }
+    public byte[] MAC { get; set; }
 
     /// <summary>
     ///     Permitted error in <see cref="TimeSigned" />.

@@ -64,7 +64,7 @@ public class WireReader
     /// <exception cref="EndOfStreamException">
     ///     When no more data is available.
     /// </exception>
-    public byte[]? ReadBytes(int length)
+    public byte[] ReadBytes(int length)
     {
         var buffer = new byte[length];
         for (var offset = 0; length > 0;)
@@ -86,7 +86,7 @@ public class WireReader
     /// <returns>
     ///     The next N bytes.
     /// </returns>
-    public byte[]? ReadByteLengthPrefixedBytes()
+    public byte[] ReadByteLengthPrefixedBytes()
     {
         int length = ReadByte();
         return ReadBytes(length);
@@ -98,7 +98,7 @@ public class WireReader
     /// <returns>
     ///     The next N bytes.
     /// </returns>
-    public byte[]? ReadUInt16LengthPrefixedBytes()
+    public byte[] ReadUInt16LengthPrefixedBytes()
     {
         int length = ReadUInt16();
         return ReadBytes(length);
@@ -179,7 +179,7 @@ public class WireReader
     ///         Compressed domain names are also supported.
     ///     </note>
     /// </remarks>
-    public DomainName? ReadDomainName()
+    public DomainName ReadDomainName()
     {
         var labels = ReadLabels();
         var name = new DomainName(labels.ToArray());
@@ -319,7 +319,7 @@ public class WireReader
     ///     Use a <paramref name="length" /> of 4 to read an IPv4 address and
     ///     16 to read an IPv6 address.
     /// </remarks>
-    public IPAddress? ReadIPAddress(int length = 4)
+    public IPAddress ReadIPAddress(int length = 4)
     {
         var address = ReadBytes(length);
         return new IPAddress(address);

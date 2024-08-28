@@ -90,7 +90,7 @@ public class RRSIGRecord : ResourceRecord
     /// <value>
     ///     The format depends upon the <see cref="Algorithm" />.
     /// </value>
-    public byte[]? Signature { get; set; }
+    public byte[] Signature { get; set; }
 
     /// <inheritdoc />
     public override void ReadData(WireReader reader, int length)
