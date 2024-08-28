@@ -19,9 +19,9 @@ public partial class NameServer
         if (!request.DO) return response;
         response.DO = true;
 
-        await AddSecurityResourcesAsync(response.Answers);
-        await AddSecurityResourcesAsync(response.AuthorityRecords);
-        await AddSecurityResourcesAsync(response.AdditionalRecords);
+        await AddSecurityResourcesAsync(response.Answers).ConfigureAwait(false);
+        await AddSecurityResourcesAsync(response.AuthorityRecords).ConfigureAwait(false);
+        await AddSecurityResourcesAsync(response.AdditionalRecords).ConfigureAwait(false);
 
         return response;
     }
@@ -47,7 +47,7 @@ public partial class NameServer
         {
             var signatures = new Message();
             var question = new Question { Name = need!.Name, Class = need.Class, Type = DnsType.RRSIG };
-            if (!await FindAnswerAsync(question, signatures, CancellationToken.None)) continue;
+            if (!await FindAnswerAsync(question, signatures, CancellationToken.None).ConfigureAwait(false)) continue;
             rrset.AddRange(signatures.Answers
                 .OfType<RRSIGRecord>()
                 .Where(r => r.TypeCovered == need.Type)

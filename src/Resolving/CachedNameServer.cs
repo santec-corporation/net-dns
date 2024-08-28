@@ -51,7 +51,7 @@ public class CachedNameServer : NameServer
             while (!token.IsCancellationRequested)
             {
                 Prune();
-                await Task.Delay(interval, token);
+                await Task.Delay(interval, token).ConfigureAwait(false);
             }
         }, token);
 

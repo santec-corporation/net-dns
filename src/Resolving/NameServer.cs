@@ -41,7 +41,7 @@ public partial class NameServer : IResolver
 
         foreach (var question in request.Questions)
         {
-            await ResolveAsync(question, response, cancel);
+            await ResolveAsync(question, response, cancel).ConfigureAwait(false);
             if (response.Answers.Count > 0 && !AnswerAllQuestions)
                 break;
         }
@@ -59,7 +59,7 @@ public partial class NameServer : IResolver
                 .Where(a => !response.Answers.Contains(a))
                 .ToList();
 
-        return await AddSecurityExtensionsAsync(request, response);
+        return await AddSecurityExtensionsAsync(request, response).ConfigureAwait(false);
     }
 
     /// <summary>
@@ -89,18 +89,23 @@ public partial class NameServer : IResolver
         response ??= new Message { QR = true };
 
         // Get answer and details of the domain.
-        var found = await FindAnswerAsync(question, response, cancel);
+        var found = await FindAnswerAsync(question, response, cancel).ConfigureAwait(false);
         var soa = FindAuthority(question.Name);
-        if (!found && response.Status == MessageStatus.NoError) response.Status = MessageStatus.NameError;
-
-        // Add the NS records for the answered domain into the
-        // the authority section.
-        if (found && soa != null)
+        switch (found)
         {
-            var res = new Message();
-            var q = new Question { Name = soa.Name, Class = soa.Class, Type = DnsType.NS };
-            await FindAnswerAsync(q, res, cancel);
-            response.AuthorityRecords.AddRange(res.Answers.OfType<NSRecord>());
+            case false when response.Status == MessageStatus.NoError:
+                response.Status = MessageStatus.NameError;
+                break;
+            // Add the NS records for the answered domain into the
+            // the authority section.
+            case true when soa != null:
+            {
+                var res = new Message();
+                var q = new Question { Name = soa.Name, Class = soa.Class, Type = DnsType.NS };
+                await FindAnswerAsync(q, res, cancel).ConfigureAwait(false);
+                response.AuthorityRecords.AddRange(res.Answers.OfType<NSRecord>());
+                break;
+            }
         }
 
         // If a name error, then add the domain authority.
